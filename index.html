@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbaniFarm KE - Smart Hydroponic Kits for Urban Kenyans</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #2e7d32;
+            --light-green: #4caf50;
+            --dark-green: #1b5e20;
+            --accent-color: #ff9800;
+            --text-dark: #333;
+            --text-light: #666;
+            --background-light: #f9f9f9;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-green);
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            color: var(--text-dark);
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-green);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-green);
+            border-color: var(--primary-green);
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark-green);
+            border-color: var(--dark-green);
+            transform: translateY(-2px);
+        }
+        
+        .btn-whatsapp {
+            background-color: #25D366;
+            border-color: #25D366;
+            color: white;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            border-color: #128C7E;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('Images/Hydroponics.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-green);
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 15px auto;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            height: 100%;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+        }
+        
+        .value-item {
+            margin-bottom: 30px;
+        }
+        
+        .value-icon {
+            font-size: 1.8rem;
+            color: var(--primary-green);
+            margin-right: 15px;
+            float: left;
+        }
+        
+        .team-member {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .team-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 5px solid var(--light-green);
+        }
+        
+        .goal-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .goal-timeline:before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--light-green);
+            transform: translateX(-50%);
+        }
+        
+        .goal-item {
+            margin-bottom: 50px;
+            position: relative;
+            width: 50%;
+            padding: 0 40px;
+        }
+        
+        .goal-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .goal-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .goal-item:before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            top: 20px;
+        }
+        
+        .goal-item:nth-child(odd):before {
+            right: -10px;
+        }
+        
+        .goal-item:nth-child(even):before {
+            left: -10px;
+        }
+        
+        .goal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .goal-year {
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            background-color: var(--dark-green);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            margin-right: 20px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+        
+        .stats-section {
+            background-color: var(--background-light);
+            padding: 60px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+        
+        .product-showcase {
+            background: linear-gradient(135deg, #f9f9f9 0%, #e8f5e9 100%);
+            padding: 80px 0;
+        }
+        
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            color: white;
+            text-decoration: none;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        /* WhatsApp Chat Widget */
+        .whatsapp-widget {
+            position: boun;
+            bottom: 100px;
+            right: 25px;
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            z-index: 999;
+            display: none;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .whatsapp-widget.active {
+            display: block;
+            animation: fadeInUp 0.3s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0); 
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px); 
+  }
+}
+        .whatsapp-header {
+            background-color: #25D366;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .whatsapp-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .whatsapp-header-info h5 {
+            margin: 0;
+            font-size: 16px;
+        }
+        
+        .whatsapp-header-info p {
+            margin: 0;
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .whatsapp-body {
+            padding: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .whatsapp-message {
+            background: #f1f1f1;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .whatsapp-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #eee;
+        }
+        
+        .whatsapp-input input {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 8px 15px;
+            margin-right: 10px;
+            outline: none;
+        }
+        
+        .whatsapp-input button {
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .whatsapp-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.1);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        @media (max-width: 768px) {
+            .goal-timeline:before {
+                left: 20px;
+            }
+            
+            .goal-item {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 0;
+            }
+            
+            .goal-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .goal-item:nth-child(odd):before,
+            .goal-item:nth-child(even):before {
+                left: 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .whatsapp-widget {
+                width: 280px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">UrbaniFarm KE</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#product">Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#goals">Goals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#team">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <a href="#contact" class="btn btn-primary ms-lg-3">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Grow Fresh Veggies in Your Urban Space</h1>
+            <p>Smart hydroponic kits with IoT technology for urban Kenyans to cultivate fresh, affordable produce right at home.</p>
+            <a href="#product" class="btn btn-primary me-2">Explore Kits</a>
+            <a href="#contact" class="btn btn-outline-light me-2">Learn More</a>
+            <a href="https://wa.me/254768572019?text=Hi%20UrbaniFarm%20KE!%20I'm%20interested%20in%20your%20hydroponic%20kits." class="btn btn-whatsapp" target="_blank">
+                <i class="fab fa-whatsapp me-2"></i>Chat on WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-6 stat-item">
+                    <div class="stat-number">2-3x</div>
+                    <p>Higher Yields Than Soil Methods</p>
+                </div>
+                <div class="col-md-3 col-6 stat-item">
+                    <div class="stat-number">90%</div>
+                    <p>Water Savings</p>
+                </div>
+                <div class="col-md-3 col-6 stat-item">
+                    <div class="stat-number">50%</div>
+                    <p>Savings on Vegetable Costs</p>
+                </div>
+                <div class="col-md-3 col-6 stat-item">
+                    <div class="stat-number">70%</div>
+                    <p>Urban Households Worry About Nutrition</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5" id="about">
+        <div class="container">
+            <h2 class="section-title">About UrbaniFarm KE</h2>
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6">
+                    <h3>Our Purpose</h3>
+                    <p>To humanize urban farming, helping families like those in drought-hit areas access affordable, fresh produce via technology that's as easy as checking your phone.</p>
+                    <p>We combat food insecurity, where 70% of urban households worry about nutrition, by turning balconies into bountiful gardens.</p>
+                    <a href="https://wa.me/254768572019?text=Hi%20UrbaniFarm%20KE!%20I%20would%20like%20to%20learn%20more%20about%20your%20mission." class="btn btn-whatsapp mt-3" target="_blank">
+                        <i class="fab fa-whatsapp me-2"></i>Ask About Our Mission
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Urban farming" class="img-fluid rounded">
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-6 order-lg-2">
+                    <h3>Mission & Vision</h3>
+                    <p><strong>Mission:</strong> Blend tech with heart to provide hydroponic kits that grow food and family connections, sustainably.</p>
+                    <p><strong>Vision:</strong> A nourished Kenya where urban homes thrive as farms, resilient to climate woes.</p>
+                    <a href="https://wa.me/254768572019?text=Hi%20UrbaniFarm%20KE!%20I%20have%20a%20question%20about%20your%20products." class="btn btn-whatsapp mt-3" target="_blank">
+                        <i class="fab fa-whatsapp me-2"></i>Ask a Question
+                    </a>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Fresh vegetables" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Our Core Values</h2>
+            <div class="row">
+                <div class="col-md-6 value-item">
+                    <i class="fas fa-heart value-icon"></i>
+                    <h4>Empathy</h4>
+                    <p>Solutions designed for busy parents and elders, making urban farming accessible to everyone.</p>
+                </div>
+                <div class="col-md-6 value-item">
+                    <i class="fas fa-lightbulb value-icon"></i>
+                    <h4>Innovation</h4>
+                    <p>App-driven technology for ease of use, monitoring, and optimal plant growth.</p>
+                </div>
+                <div class="col-md-6 value-item">
+                    <i class="fas fa-leaf value-icon"></i>
+                    <h4>Sustainability</h4>
+                    <p>90% water savings compared to traditional farming methods.</p>
+                </div>
+                <div class="col-md-6 value-item">
+                    <i class="fas fa-users value-icon"></i>
+                    <h4>Community</h4>
+                    <p>User forums, recipe sharing, and workshops to build strong community bonds.</p>
+                </div>
+                <div class="col-md-6 offset-md-3 value-item">
+                    <i class="fas fa-handshake value-icon"></i>
+                    <h4>Integrity</h4>
+                    <p>Fair pricing and trustworthy relationships with our customers.</p>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="https://wa.me/254768572019?text=Hi%20UrbaniFarm%20KE!%20I%20appreciate%20your%20values%20and%20would%20like%20to%20know%20more." class="btn btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp me-2"></i>Chat About Our Values
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section class="product-showcase py-5" id="product">
+        <div class="container">
+            <h2 class="section-title">Our Smart Hydroponic Kits</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card">
+                        <i class="fas fa-mobile-alt feature-icon"></i>
+                        <h4>App-Connected Monitoring</h4>
+                        <p>Monitor your plants' health, water levels, and nutrient balance right from your smartphone.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card">
+                        <i class="fas fa-tint feature-icon"></i>
+                        <h4>Water Efficient</h4>
+                        <p>Uses 90% less water than traditional soil farming, perfect for water-scarce urban areas.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card">
+                        <i class="fas fa-seedling feature-icon"></i>
+                        <h4>Space Optimized</h4>
+                        <p>Designed specifically for balconies, small patios, and other limited urban spaces.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card">
+                        <i class="fas fa-chart-line feature-icon"></i>
+                        <h4>High Yield</h4>
+                        <p>Produces 2-3 times more vegetables compared to traditional soil methods.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card">
+                        <i class="fas fa-bolt feature-icon"></i>
+                        <h4>IoT Sensors</h4>
+                        <p>Smart sensors automatically monitor and adjust growing conditions for optimal results.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card">
+                        <i class="fas fa-clock feature-icon"></i>
+                        <h4>Time Saving</h4>
+                        <p>Automated systems reduce daily maintenance to just minutes per day.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="https://wa.me/254768572019?text=Hi%20UrbaniFarm%20KE!%20I'm%20interested%20in%20your%20hydroponic%20kits.%20Can%20you%20send%20me%20more%20details%20and%20pricing?" class="btn btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp me-2"></i>Get Pricing Info
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Goals Section -->
+    <section class="py-5" id="goals">
+        <div class="container">
+            <h2 class="section-title">Our Growth Journey</h2>
+            <div class="goal-timeline">
+                <div class="goal-item">
+                    <div class="goal-content">
+                        <div class="goal-year">Short-Term (1-2 Years)</div>
+                        <ul>
+                            <li>Sell 2,000 kits in Nairobi</li>
+                            <li>Partner with 10 retail stores</li>
+                            <li>Achieve revenue of KSh 20M with 50% margins</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="goal-item">
+                    <div class="goal-content">
+                        <div class="goal-year">Medium-Term (3-5 Years)</div>
+                        <ul>
+                            <li>Expand to 3 additional Kenyan cities</li>
+                            <li>Add AI capabilities for yield optimization</li>
+                            <li>Train 5,000 urban residents via workshops</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="goal-item">
+                    <div class="goal-content">
+                        <div class="goal-year">Long-Term (5+ Years)</div>
+                        <ul>
+                            <li>Scale across Africa</li>
+                            <li>Integrate M-Pesa for payments and micro-loans</li>
+                            <li>Help families reduce food costs by 30%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="https://wa.me/254768572019?text=Hi%20UrbaniFarm%20KE!%20I%20would%20like%20to%20partner%20with%20you%20or%20invest%20in%20your%20business." class="btn btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp me-2"></i>Discuss Partnerships
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-5 bg-light" id="team">
+        <div class="container">
+            <h2 class="section-title">Our Team</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 team-member">
+    <img src="images/Mark.jpg" alt="CEO" class="team-photo">
+    <h4>Mark Kigen-</h4>
+    <h4>CEO & Founder</h4>
+    <p>Visionary leader with a passion for sustainable agriculture and technology.</p>
+</div>
+<div class="col-lg-4 col-md-6 team-member">
+    <img src="Images/Mesh.jpg" alt="Product Developer" class="team-photo">
+    <h4>Shem Oduor-</h4>
+    <h4>Product Developer</h4>
+    <p>Builds and nurtures our user community through workshops and support.</p>
+</div>
+<div class="col-lg-4 col-md-6 team-member">
+    <img src="Images/Wivina.jpg" alt="Head-and-shoulders portrait of a person with tightly braided hair, wearing a dark patterned top with white text; neutral light background; subject is facing forward with a calm and professional demeanor" class="team-photo">
+    <h4>Wivina Kendi Kamau-</h4>
+    <h4>Customer Support Lead</h4>
+    <p>Builds and nurtures our user community through workshops and support.</p>
+</div>
+<div class="col-lg-4 col-md-6 team-member">
+    <img src="Images/Khan.jpg" alt="Operations Manager" class="team-photo">
+    <h4>Mohammad Umais Khan-</h4>
+    <h4>Operations Manager</h4>
+    <p>Oversees daily operations and ensures efficiency in all processes.</p>
+</div>
+<div class="col-lg-4 col-md-6 team-member">
+    <img src="Images/Tirop.jpg" alt="Finance Officer" class="team-photo">
+    <h4>Brian Kiprono-</h4>
+    <h4>Finance Officer</h4>
+    <p>Manages financial planning and analysis to drive business growth.</p>
+</div>
+<div class="col-lg-4 col-md-6 team-member">
+    <img src="Images/Wivina.jpg" alt="Marketing Director" class="team-photo">
+    <h4>Valentine Cheptoo-</h4>
+    <h4>Marketing Director</h4>
+    <p>Develops and implements marketing strategies to boost brand awareness.</p>
+</div>
+<div class="col-lg-4 col-md-6 team-member">
+    <img src="Images/Eddie.jpg" alt="Community Engagement Coordinator facing forward with tightly braided hair, wearing a dark top patterned with white text including phrases like urban farm and Nairobi; neutral light background; subject appears calm and professionally attentive" class="team-photo">
+    <h4>Edwin Odhiambo-</h4>
+    <h4>Community Engagement Coordinator</h4>
+    <p>Builds and nurtures our user community through workshops and support.</p>
+</div>
+            <div class="text-center mt-4">
+                <a href="https://wa.me/254768572019?text=Hi%20UrbaniFarm%20KE!%20I'd%20like%20to%20speak%20with%20your%20team%20about%20an%20opportunity." class="btn btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp me-2"></i>Contact Our Team
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-5" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="row mb-5">
+                        <div class="col-md-6 text-center mb-4">
+                            <i class="fas fa-phone fa-2x text-primary mb-3"></i>
+                            <h4>Call Us</h4>
+                            <p>+254 768572019</p>
+                        </div>
+                        <div class="col-md-6 text-center mb-4">
+                            <i class="fab fa-whatsapp fa-2x text-success mb-3"></i>
+                            <h4>WhatsApp</h4>
+                            <p>+254 768572019</p>
+                            <a href="https://wa.me/254768572019?text=Hi%20UrbaniFarm%20KE!%20I%20found%20you%20through%20your%20website%20and%20would%20like%20to%20learn%20more." class="btn btn-whatsapp btn-sm" target="_blank">
+                                <i class="fab fa-whatsapp me-1"></i>Message Us
+                            </a>
+                        </div>
+                    </div>
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Subject">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary me-3">Send Message</button>
+                        <a href="https://wa.me/254768572019?text=Hi%20UrbaniFarm%20KE!%20I%20prefer%20to%20chat%20on%20WhatsApp%20about%20your%20products." class="btn btn-whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp me-2"></i>Chat on WhatsApp
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h3>UrbaniFarm KE</h3>
+                    <p>Growing Food, Connecting Families.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://wa.me/254768572019" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <div class="footer-links">
+                        <a href="#home">Home</a><br>
+                        <a href="#about">About Us</a><br>
+                        <a href="#product">Products</a><br>
+                        <a href="#goals">Our Goals</a><br>
+                        <a href="#team">Our Team</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Contact Info</h5>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> Nairobi, Kenya</p>
+                    <p><i class="fas fa-phone me-2"></i> +254 768572019</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@urbanifarmke.co.ke</p>
+                    <p><i class="fab fa-whatsapp me-2"></i> +254 768572019</p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p>&copy; September 2025 UrbaniFarm KE. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/254768572019?text=Hi%20UrbaniFarm%20KE!%20I%20found%20you%20through%20your%20website%20and%20would%20like%20to%20learn%20more%20about%20your%20products." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- WhatsApp Chat Widget (Optional) -->
+    <div class="whatsapp-widget" id="whatsappWidget">
+        <div class="whatsapp-header">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="UrbaniFarm Support">
+            <div class="whatsapp-header-info">
+                <h5>UrbaniFarm Support</h5>
+                <p>Typically replies instantly</p>
+            </div>
+            <button class="whatsapp-close" onclick="closeWidget()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="whatsapp-body">
+            <div class="whatsapp-message">
+                Hi there! <br>
+                I'm from UrbaniFarm KE. How can I help you today?
+            </div>
+        </div>
+        <div class="whatsapp-input">
+            <input type="text" placeholder="Type a message..." id="whatsappInput">
+            <button onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // WhatsApp Widget Functionality
+        function toggleWidget() {
+            const widget = document.getElementById('whatsappWidget');
+            widget.classList.toggle('active');
+        }
+        
+        function closeWidget() {
+            const widget = document.getElementById('whatsappWidget');
+            widget.classList.remove('active');
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('whatsappInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                // In a real implementation, this would send the message to your backend
+                // For now, we'll just open WhatsApp with the message
+                const encodedMessage = encodeURIComponent(message);
+                window.open(`https://wa.me/254768572019?text=${encodedMessage}`, '_blank');
+                
+                // Clear input
+                input.value = '';
+                
+                // Close widget
+                closeWidget();
+            }
+        }
+        
+        // Allow pressing Enter to send message
+        document.getElementById('whatsappInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        // Optional: Open widget when clicking the floating button (instead of direct WhatsApp)
+        // Uncomment the next line if you want the floating button to open the widget instead of direct WhatsApp
+        // document.querySelector('.whatsapp-float').addEventListener('click', function(e) { e.preventDefault(); toggleWidget(); });
+        
+        // Add click event to WhatsApp buttons to track conversions (optional)
+        document.querySelectorAll('a[href*="wa.me"]').forEach(button => {
+            button.addEventListener('click', function() {
+                // Here you could add analytics tracking
+                console.log('WhatsApp button clicked: ', this.textContent);
+            });
+        });
+    </script>
+</body>
+</html>
